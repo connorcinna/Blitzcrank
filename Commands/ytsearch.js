@@ -1,8 +1,8 @@
 const discord = require("discord.js");
 const fetch = require("node-fetch");
-const key = "AIzaSyBI-n0p1hyzVsX0QZKYdvGgTAwSxaggh7A";
+const config = require("../config.json");
 module.exports.run = async (bot, message, args) => {
-    var url = "https://youtube.googleapis.com/youtube/v3/search?q="+args+"&safeSearch=safeSearchSettingUnspecified&videoEmbeddable=videoEmbeddableUnspecified&key="+key;
+    var url = "https://youtube.googleapis.com/youtube/v3/search?q="+args+"&safeSearch=safeSearchSettingUnspecified&videoEmbeddable=videoEmbeddableUnspecified&key="+config.key;
     fetch(url)
         .then(response => response.json())
         .then(data => {
