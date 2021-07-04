@@ -9,6 +9,8 @@
   "author": "Connor",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
+    "cheerio": "^1.0.0-rc.10",
     "discord.js": "^11.6.4",
     "node-fetch": "^2.6.1"
   }
