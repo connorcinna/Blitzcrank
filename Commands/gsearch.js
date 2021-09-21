@@ -11,7 +11,7 @@ module.exports.run = async (bot, message, args) => {
                 console.log(data.searchInformation);
                 if (data.searchInformation.totalResults != 0) {
                     try {
-                        message.channel.send(data.items[1].link);
+                        message.channel.send(data.items[0].link);
                     } catch (error) {
                         message.channel.send("shut the fuck up weeb");
                     } 
