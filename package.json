@@ -9,10 +9,11 @@
   "author": "Connor",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.21.4",
     "cheerio": "^1.0.0-rc.10",
     "discord.js": "^11.6.4",
     "jimp": "^0.16.1",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.1",
+    "nth-check": "^2.0.1"
   }
 }
