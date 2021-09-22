@@ -1,8 +1,8 @@
 const discord = require("discord.js");
 const fetch = require("node-fetch");
-
+const config = require("../config.json")
+const apikey = config.tenor_key;
 module.exports.run = async (bot, message, args) => {
-    var apikey = "1HUD01D3IKPT";
     var limit = 1;
     var search_term = args;
     var url = "https://g.tenor.com/v1/search?q=" + search_term + "&key=" + apikey + "&limit=" + limit;
