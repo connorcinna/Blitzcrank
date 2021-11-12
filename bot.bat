@@ -1,3 +1,3 @@
 @echo off
 cd C:\Users\conno\Documents\DiscordBot
-node bot.js
+node --trace-warnings bot.js

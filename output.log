@@ -1,0 +1,39 @@
+armin.js loaded!
+brendon.js loaded!
+carly.js loaded!
+connor.js loaded!
+epic.js loaded!
+ethan.js loaded!
+gif.js loaded!
+gsearch.js loaded!
+help.js loaded!
+ian.js loaded!
+michael.js loaded!
+playnext.js loaded!
+shitpost.js loaded!
+ugg.js loaded!
+ytsearch.js loaded!
+Blitzcrank is online!
+{
+  results: [
+    {
+      id: '22993094',
+      title: '',
+      content_description: 'Wadehlad Strongest Vs Weakest GIF',
+      h1_title: '',
+      media: [Array],
+      bg_color: '',
+      created: 1631032940.797954,
+      itemurl: 'https://tenor.com/view/wadehlad-strongest-vs-weakest-lol-christianity-meme-gif-22993094',
+      url: 'https://tenor.com/bIDIw.gif',
+      tags: [],
+      flags: [],
+      shares: 1,
+      hasaudio: false,
+      hascaption: false,
+      source_id: '',
+      composite: null
+    }
+  ],
+  next: '1'
+}

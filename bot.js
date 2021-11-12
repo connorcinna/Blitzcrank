@@ -2,9 +2,21 @@ const Discord = require("discord.js");
 const config = require("./config.json");
 const bot = new Discord.Client({disableEveryone: true});
 const fs = require("fs");
+const schedule = require('node-schedule');
+const { channel } = require("diagnostics_channel");
+const util = require('util');
+const main_channel = bot.channels.cache.get('98955796129288192');
+
+var log_file = fs.createWriteStream("./error.txt", {flags : 'w'});
+var log_stdout = process.stdout;
+console.log = function(err) {
+    log_file.write(util.format(err) + '\n');
+    log_stdout.write(util.format(err) + '\n');
+}
+
 bot.commands = new Discord.Collection();
 
-fs.readdir("./commands/", (err, files) => {
+fs.readdir("./Commands/", (err, files) => {
     if (err) console.log(err);
 
     let jsfile = files.filter(f => f.split(".").pop() === "js");
@@ -24,6 +36,7 @@ fs.readdir("./commands/", (err, files) => {
 bot.on("ready", async () => {
     console.log(`${bot.user.username} is online!`)
     bot.user.setActivity("amogus", {type: "PLAYING"});
+
 });
 
 bot.on("message", async message => {
@@ -38,4 +51,11 @@ bot.on("message", async message => {
     if(commandfile) commandfile.run(bot, message, args);
 });
 
+const friday = schedule.scheduleJob("00 11 * * 5", fridaybabyfuck);
+
+function fridaybabyfuck() {
+    console.log('fridaybabyfuck reached');
+    main_channel.send("its friday baby, fuck");
+    main_channel.send("https://www.youtube.com/watch?v=WUyJ6N6FD9Q");
+}
 bot.login(config.token);

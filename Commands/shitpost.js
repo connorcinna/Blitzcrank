@@ -1,7 +1,7 @@
 const discord = require("discord.js");
 const config = require("../config.json");
 const jimp = require("jimp");
-const fs = require('fs');
+const fs = require("fs");
 const nouns = config.noun;
 const verbs = config.verb;
 const adjectives = config.adjective;
@@ -47,7 +47,9 @@ module.exports.run = async (bot, message, args) => {
     var image_caption = sentence_generator();
     var loaded_image;
 
-    jimp.read(file_name_copy)
+    await jimp.read(file_name_copy, (err) => {
+            if (err) console.error(err);
+        })
         .then(function (image) {
             loaded_image = image;
             return jimp.loadFont(jimp.FONT_SANS_16_BLACK);

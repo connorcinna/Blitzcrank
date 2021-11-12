@@ -14,6 +14,7 @@
     "discord.js": "^11.6.4",
     "jimp": "^0.16.1",
     "node-fetch": "^2.6.1",
+    "node-schedule": "^2.0.0",
     "nth-check": "^2.0.1"
   }
 }
