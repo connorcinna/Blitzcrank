@@ -2,6 +2,10 @@ const discord = require("discord.js");
 const fetch = require("node-fetch");
 const config = require("../config.json")
 const apikey = config.tenor_key;
+const fs = require("fs");
+var log_file = fs.createWriteStream("./output.log", {flags : 'w'});
+var log_stdout = process.stdout;
+
 module.exports.run = async (bot, message, args) => {
     var limit = 1;
     var search_term = args;
@@ -19,6 +23,4 @@ module.exports.run = async (bot, message, args) => {
             console.log(data);
     });
 }
-module.exports.help = {
-    name: "gif"
-}
+module.exports.name = "gif"

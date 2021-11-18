@@ -1,5 +1,8 @@
 const discord = require("discord.js");
 const fetch = require("node-fetch");
+const fs = require("fs");
+var log_file = fs.createWriteStream("./output.log", {flags : 'w'});
+var log_stdout = process.stdout;
 module.exports.run = async (bot, message, args) => {
         var str = args.toString().replace(/,'/g, "");
         console.log('parameter passed: ' + str);
@@ -38,6 +41,4 @@ module.exports.run = async (bot, message, args) => {
                 
         });
 }
-module.exports.help = {
-    name: "gsearch"
-}
+module.exports.name = "gsearch";

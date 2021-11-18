@@ -1,61 +1,66 @@
 const Discord = require("discord.js");
 const config = require("./config.json");
-const bot = new Discord.Client({disableEveryone: true});
+const client = new Discord.Client({disableEveryone: true});
 const fs = require("fs");
 const schedule = require('node-schedule');
-const { channel } = require("diagnostics_channel");
 const util = require('util');
-const main_channel = bot.channels.cache.get('98955796129288192');
-
-var log_file = fs.createWriteStream("./error.txt", {flags : 'w'});
+const main_channel_id = '98955796129288192';
+var main_channel;
+var log_file = fs.createWriteStream("./output.log", {flags : 'w'});
 var log_stdout = process.stdout;
 console.log = function(err) {
     log_file.write(util.format(err) + '\n');
     log_stdout.write(util.format(err) + '\n');
 }
-
-bot.commands = new Discord.Collection();
+client.commands = new Discord.Collection();
 
 fs.readdir("./Commands/", (err, files) => {
     if (err) console.log(err);
-
     let jsfile = files.filter(f => f.split(".").pop() === "js");
     if(jsfile.length <= 0) {
         console.log("No commands found")
         return;
     }
     jsfile.forEach((f, i) => {
-        let props = require(`./commands/${f}`)
+        let props = require(`./Commands/${f}`)
         console.log(`${f} loaded!`)
-        bot.commands.set(props.help.name, props);
+        client.commands.set(props.name, props);
     });
-
-
 });
 
-bot.on("ready", async () => {
-    console.log(`${bot.user.username} is online!`)
-    bot.user.setActivity("amogus", {type: "PLAYING"});
-
+client.on("ready", async () => {
+    console.log(`${client.user.username} is online!`)
+    client.user.setActivity("amogus", {type: "PLAYING"});
+    main_channel = client.channels.get(main_channel_id);
+    const friday = schedule.scheduleJob("00 10 * * 5", err => {
+        fridaybabyfuck();
+        if (err) {
+            console.log(err);
+        }
+    });
 });
 
-bot.on("message", async message => {
-    if(message.author.bot) return;
-    if(message.channel.type === "dm") return;
+client.on("message", async message => {
+    if(message.channel.type === "dm") {
+        return;
+    } 
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
-    if (cmd.charAt(0) != config.prefix) return;
+    if (cmd.charAt(0) != config.prefix) {
+        return;
+    } 
     let args = messageArray.slice(1);
-
-    let commandfile = bot.commands.get(cmd.slice(config.prefix.length));
-    if(commandfile) commandfile.run(bot, message, args);
+    console.log(args);
+    let commandfile = client.commands.get(cmd.slice(config.prefix.length));
+    console.log(commandfile);
+    if(commandfile) commandfile.run(client, message, args);
 });
-
-const friday = schedule.scheduleJob("00 11 * * 5", fridaybabyfuck);
 
 function fridaybabyfuck() {
     console.log('fridaybabyfuck reached');
     main_channel.send("its friday baby, fuck");
     main_channel.send("https://www.youtube.com/watch?v=WUyJ6N6FD9Q");
 }
-bot.login(config.token);
+
+
+client.login(config.token);
