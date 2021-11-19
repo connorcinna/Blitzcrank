@@ -12,5 +12,5 @@ DiscordJS\
 google search API\
 youtube search API\
 tenor search API\
-node-schedule\
+node-schedule
 
