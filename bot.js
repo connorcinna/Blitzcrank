@@ -63,4 +63,4 @@ function fridaybabyfuck() {
 }
 
 
-client.login(config.token);
+client.login(config.client_token);
