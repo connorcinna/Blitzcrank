@@ -1,5 +1,16 @@
-this is my first discord bot. a list of commands can be found in the Commands folder, but in short:
-!meme will choose a random meme image from a growing collection of images hosted locally by me
-!playnext will choose a random steam game for you to play next on the steam store (not a game that you own)
-!search will search google for whatever argument you give it and return the first image result
+Personal Discord bot. Commands:\
+!epic will choose a random meme image from a growing collection of images\
+!playnext gives you a random steam game to play next\
+!gsearch [arg] will search google for whatever argument you give it and return the first image result (100 queries per day, safe search enabled)\
+!ytsearch [arg] will search youtube for the first video with the title of the argument\
+!gif [arg] will search Tenor for the first gif from their API matching the argument provided\
 the commands with names, i.e. !armin or !ethan will send a message saying "*name* is *adjective* from a list of 1346 adjectives.
+
+libs used:\
+NodeJS\
+DiscordJS\
+google search API\
+youtube search API\
+tenor search API\
+node-schedule
+
