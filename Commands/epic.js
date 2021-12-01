@@ -3,7 +3,12 @@ const fs = require('fs');
 const readline = require('readline');
 const google = require('googleapis');
 const config = require("../config.json")
+module.exports.run = async(bot, message, args) => {
+  return message.channel.send("currently disabled");
+}
 
+module.exports.name = "epic"; 
+/*
 const SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly'];
 const TOKEN_PATH = '../config.google.json';
 fs.readFile(config.credentials, (err, content) => {
@@ -21,7 +26,6 @@ module.exports.run = async (bot, message, args) => {
     image_number = Math.floor (Math.random() * file_count) + 1; 
     return message.channel.send({ files: ["./Commands/images/1 (" + image_number + ").jpg"]});
 }
-*/
 
 //google drive api copypasta
 function authorize(credentials, callback) {
@@ -79,8 +83,10 @@ function listFiles(auth) {
     }
   });
 }
-module.exports.name = "epic"; 
+*/
+/*
 module.exports = {
     SCOPES,
     listFiles,
 }
+*/

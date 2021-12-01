@@ -14,8 +14,9 @@
     "discord.js": "^11.6.4",
     "googleapis": "^39.2.0",
     "jimp": "^0.16.1",
+    "json-bigint": "^1.0.0",
     "node-fetch": "^2.6.6",
-    "node-schedule": "^2.0.0",
+    "node-schedule": "^2.1.0",
     "nth-check": "^2.0.1"
   }
 }
