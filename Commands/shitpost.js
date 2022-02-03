@@ -1,4 +1,3 @@
-const discord = require("discord.js");
 const config = require("../config.json");
 const jimp = require("jimp");
 const fs = require("fs");
