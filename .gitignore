@@ -1,2 +1,2 @@
-/config.json
-/Commands/images
+./src/config.json
+./src/Commands/images
