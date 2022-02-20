@@ -6,6 +6,4 @@ module.exports.run = async (bot, message, args) => {
     var adjective = config.adjective[num];
     return message.channel.send("Ian is " + adjective);
 }
-module.exports.help = {
-    name: "ian"
-}
+module.exports.name = "ian";

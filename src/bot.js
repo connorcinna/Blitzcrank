@@ -40,6 +40,8 @@ client.on("ready", async () => {
         }
     });
     */
+
+//    console.log(client.commands);
 });
 
 client.on("message", async message => {
@@ -52,10 +54,10 @@ client.on("message", async message => {
         return;
     } 
     let args = messageArray.slice(1);
-    console.log(args);
-    let commandfile = client.commands.get(cmd.slice(config.prefix.length));
-    console.log(commandfile);
-    if(commandfile) commandfile.run(client, message, args);
+    console.log("args: " + args);
+    let command_file = client.commands.get(cmd.slice(config.prefix.length));
+    //console.log("command being run: " + command_file);
+    if(command_file) command_file.run(client, message, args);
 });
 /*
 function fridaybabyfuck() {

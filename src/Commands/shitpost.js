@@ -65,6 +65,4 @@ module.exports.run = async (bot, message, args) => {
         if (err) console.error(err);
     });
 }
-module.exports.help = {
-    name: "shitpost"
-}
+module.exports.name = "shitpost";

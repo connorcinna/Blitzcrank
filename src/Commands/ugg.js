@@ -11,22 +11,15 @@ module.exports.run = async (bot, message, args) => {
         else url = "https://u.gg/lol/champions/" + args[0] + "/build";
         const {data} = await axios.get(url);
         const $ = cheerio.load(data);
+        let keystone = $('div.perk.keystone.perk-active').html();
+        let perk1 = $('div.perk.perk-active').html();
+        console.log(keystone);
+        console.log(perk1);
         const runes_primary = [];
         const runes_secondary = [];
-
-        /*
-        $(".perk keystone perk-active").each((_idx, el) => {
-            runes_primary.push($(el).attr('src'));
-            console.log("reached");
-        });
-        console.log(runes_primary);
-        */
-       var keystone = $("div",)
     }
     catch (error) {
         throw error;
     }
 };
-module.exports.help = {
-    name: "ugg"
-}
+module.exports.name = "ugg";
