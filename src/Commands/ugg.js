@@ -36,6 +36,7 @@ module.exports.run = async (bot, message, args) => {
         const runes_primary = [];
         const runes_secondary = [];
         const skill_path = [];
+        const items = [];
         let skills = $("div[class='skill-priority-path']");
         $(skills).find("div[class='skill-label bottom-center']").each((i, element) =>  {
             var skill = $(element).text();
@@ -57,6 +58,11 @@ module.exports.run = async (bot, message, args) => {
             runes_secondary.push(perk);
         });
         var skill_path_string = skill_path.join(' => ');
+        const item_path = $("div[class='content-section content-section_no-padding recommended-build_items media-query media-query_DESKTOP_MEDIUM__DESKTOP_LARGE']");
+        $(item_path).find("div[class='item-img']").each((i, element) => {
+           items.push($(this).css('background-image'); 
+        });
+        console.log(items);
         message.channel.send(skill_path_string, {
             files: [
                 runes_primary[0],
