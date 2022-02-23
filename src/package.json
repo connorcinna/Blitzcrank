@@ -13,7 +13,7 @@
     "canvas": "^2.9.0",
     "cheerio": "^1.0.0-rc.10",
     "discord.js": "^11.6.4",
-    "googleapis": "^39.2.0",
+    "googleapis": "^95.0.0",
     "jimp": "^0.16.1",
     "json-bigint": "^1.0.0",
     "node-fetch": "^2.6.7",

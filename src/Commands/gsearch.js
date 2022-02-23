@@ -16,11 +16,11 @@ module.exports.run = async (bot, message, args) => {
                     try {
                         message.channel.send(data.items[0].link);
                     } catch (error) {
-                        message.channel.send("shut the fuck up weeb");
+                        message.channel.send("??????");
                     } 
                 }
                 else  {
-                    message.channel.send({files: ["./Commands/no search results lol.png"]});
+                    message.channel.send({files: ["../../resources/no search results lol.png"]});
                 }
                 if (data.error != undefined && data.error.code === 429) {
                     var curr = new Date();

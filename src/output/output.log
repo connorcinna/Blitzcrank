@@ -16,30 +16,9 @@ ugg.js loaded!
 ytsearch.js loaded!
 Blitzcrank is online!
 args: viego
-https://static.u.gg/assets/lol/riot_static/12.4.1/img/spell/ViegoQ.png
-https://static.u.gg/assets/lol/riot_static/12.4.1/img/spell/ViegoE.png
-https://static.u.gg/assets/lol/riot_static/12.4.1/img/spell/ViegoW.png
-https://static.u.gg/assets/lol/riot_static/12.4.1/img/sprite/item1.png
-https://static.u.gg/assets/lol/riot_static/12.4.1/img/sprite/item0.png
-https://static.u.gg/assets/lol/riot_static/12.4.1/img/sprite/item1.png
-https://static.u.gg/assets/lol/riot_static/12.4.1/img/sprite/item1.png
-https://static.u.gg/assets/lol/riot_static/12.4.1/img/sprite/item0.png
-https://static.u.gg/assets/lol/riot_static/12.4.1/img/sprite/item0.png
-https://static.u.gg/assets/lol/riot_static/12.4.1/img/sprite/item1.png
-https://static.u.gg/assets/lol/riot_static/12.4.1/img/sprite/item0.png
-https://static.u.gg/assets/lol/riot_static/12.4.1/img/sprite/item0.png
-https://static.u.gg/assets/lol/riot_static/12.4.1/img/sprite/item0.png
-https://static.u.gg/assets/lol/riot_static/12.4.1/img/sprite/item0.png
-[
-  'https://static.u.gg/assets/lol/riot_static/12.4.1/img/sprite/item1.png',
-  'https://static.u.gg/assets/lol/riot_static/12.4.1/img/sprite/item0.png',
-  'https://static.u.gg/assets/lol/riot_static/12.4.1/img/sprite/item1.png',
-  'https://static.u.gg/assets/lol/riot_static/12.4.1/img/sprite/item1.png',
-  'https://static.u.gg/assets/lol/riot_static/12.4.1/img/sprite/item0.png',
-  'https://static.u.gg/assets/lol/riot_static/12.4.1/img/sprite/item0.png',
-  'https://static.u.gg/assets/lol/riot_static/12.4.1/img/sprite/item1.png',
-  'https://static.u.gg/assets/lol/riot_static/12.4.1/img/sprite/item0.png',
-  'https://static.u.gg/assets/lol/riot_static/12.4.1/img/sprite/item0.png',
-  'https://static.u.gg/assets/lol/riot_static/12.4.1/img/sprite/item0.png',
-  'https://static.u.gg/assets/lol/riot_static/12.4.1/img/sprite/item0.png'
-]
+drawing keystone
+drawing p_rune1
+drawing p_rune2
+drawing p_rune3
+drawing s_rune1
+drawing s_rune2
