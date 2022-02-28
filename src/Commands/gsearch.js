@@ -21,6 +21,7 @@ module.exports.run = async (bot, message, args) => {
                 }
                 else  {
                     message.channel.send({files: ["../../resources/no search results lol.png"]});
+
                 }
                 if (data.error != undefined && data.error.code === 429) {
                     var curr = new Date();

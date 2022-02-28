@@ -41,8 +41,10 @@ module.exports.run = async (bot, message, args) => {
         const runes_primary = [];
         const runes_secondary = [];
         const skill_path = [];
+        const shards = [];
         const items = [];
-                function skill_fill(skill_path) {
+
+        function skill_fill(skill_path) {
             let skills = $("div[class='skill-priority-path']");
             $(skills).find("div[class='champion-skill-with-label']").each((i, element) =>  {
                 if (i>2) return false; 
@@ -50,26 +52,13 @@ module.exports.run = async (bot, message, args) => {
                 skill_path.push(skill);
             });
         }
-        async function draw_skill_path(skill_path) {
-            const item_canvas = canvas.createCanvas(200, 40);
-            const context = item_canvas.getContext('2d');
-            let right_arrow = await canvas.loadImage('../../resources/right.jpg');
-            let skill_0 = await canvas.loadImage(skill_path[0]);
-            context.drawImage(skill_0, 0, 0, 36, item_canvas.height);
-            context.drawImage(right_arrow, 36, 0, 36, item_canvas.height);
-            let skill_1 = await canvas.loadImage(skill_path[1]);
-            context.drawImage(skill_1, 72, 0, 36, item_canvas.height);
-            context.drawImage(right_arrow, 108, 0, 36, item_canvas.height);
-            let skill_2 = await canvas.loadImage(skill_path[2]);
-            context.drawImage(skill_2, 144, 0, 36, item_canvas.height);
-            return item_canvas.toBuffer(); 
-        }
+
         function runes_fill(runes_primary, runes_secondary) {
             let keystone = $("div[class='perk keystone perk-active']").find('img').attr('src');
             runes_primary.push(keystone);
             let primary_tree = $("div[class='rune-tree_v2 primary-tree']");
             $(primary_tree).find("div[class='perk perk-active']").each((i, element) => { 
-                if (i > 2) return false; //returning false is how Cheerio wants the .each loop to terminate
+                if (i > 2) return false; 
                 var perk = $(element).find('img').attr('src');
                 runes_primary.push(perk);
             });
@@ -81,29 +70,53 @@ module.exports.run = async (bot, message, args) => {
                 runes_secondary.push(perk);
             });
         }
-        async function draw_runes(runes_primary, runes_secondary) {
-            const item_canvas = canvas.createCanvas(400, 512);
-            const context = item_canvas.getContext('2d');
-            let keystone = await canvas.loadImage(runes_primary[0]);
-            console.log('drawing keystone');
-            context.drawImage(keystone, 0, 0, 64, 64);
-            let p_rune1 = await canvas.loadImage(runes_primary[1]);
-            console.log('drawing p_rune1');
-            context.drawImage(p_rune1, 0, 96, 64, 160);
-            let p_rune2 = await canvas.loadImage(runes_primary[2]);
-            console.log('drawing p_rune2');
-            context.drawImage(p_rune2, 0, 196, 64, 224);
-            let p_rune3 = await canvas.loadImage(runes_primary[3]);
-            console.log('drawing p_rune3');
-            context.drawImage(p_rune3, 0, 260, 64, 324);
-            let s_rune1 = await canvas.loadImage(runes_secondary[0]);
-            console.log('drawing s_rune1');
-            context.drawImage(s_rune1, 64, 0, 128, 64);           
-            let s_rune2 = await canvas.loadImage(runes_secondary[1]);
-            console.log('drawing s_rune2');
-            context.drawImage(s_rune2, 64, 98, 128, 162);           
+        function shards_fill(shards) {
+            let shard_tree = $("div[class='rune-tree_v2 stat-shards-container_v2']");
+            $(shard_tree).find("div[class='shard shard-active']").each((i, element) => {
+                if (i > 2) return false;
+                var shard = $(element).find('img').attr('src');
+                shards.push(shard);
+            });
+        }
+        async function draw_image() {
+            const image_canvas = canvas.createCanvas(360, 550);
+            const context = image_canvas.getContext('2d');
 
-            return item_canvas.toBuffer();
+            //runes
+            let keystone = await canvas.loadImage(runes_primary[0]);
+            let p_rune0 = await canvas.loadImage(runes_primary[1]);
+            let p_rune1 = await canvas.loadImage(runes_primary[2]);
+            let p_rune2 = await canvas.loadImage(runes_primary[3]);
+            let s_rune0 = await canvas.loadImage(runes_secondary[0]);
+            let s_rune1 = await canvas.loadImage(runes_secondary[1]);
+            context.drawImage(keystone, 0, 0, 64, 64);
+            context.drawImage(p_rune0, 0, 96, 64, 64);
+            context.drawImage(p_rune1, 0, 192, 64, 64);
+            context.drawImage(p_rune2, 0, 288, 64, 64);
+            context.drawImage(s_rune0, 128, 0, 64, 64);           
+            context.drawImage(s_rune1, 128, 96, 64, 64);           
+
+            //skill order
+            let right_arrow = await canvas.loadImage('../resources/right.jpg');
+            let skill_0 = await canvas.loadImage(skill_path[0]);
+            let skill_1 = await canvas.loadImage(skill_path[1]);
+            let skill_2 = await canvas.loadImage(skill_path[2]);
+            context.drawImage(skill_0, 0, 448, 72, 72);
+            context.drawImage(right_arrow, 72, 448, 72, 72);
+            context.drawImage(skill_1, 144, 448, 72, 72);
+            context.drawImage(right_arrow, 216 , 448, 72, 72);
+            context.drawImage(skill_2, 288, 448, 72, 72);
+
+            //stat shards
+            let shard_0 = await canvas.loadImage(shards[0]);
+            let shard_1 = await canvas.loadImage(shards[1]);
+            let shard_2 = await canvas.loadImage(shards[2]);
+            context.drawImage(shard_0, 144, 200, 32, 32);
+            context.drawImage(shard_1, 144, 248, 32, 32);
+            context.drawImage(shard_1, 144, 306, 32, 32);
+
+            return image_canvas.toBuffer();
+
         }
         function items_fill(items) {
             let item_path = $("div[class='content-section content-section_no-padding recommended-build_items media-query media-query_DESKTOP_MEDIUM__DESKTOP_LARGE']");
@@ -117,20 +130,13 @@ module.exports.run = async (bot, message, args) => {
         }
 
         skill_fill(skill_path);
-        const skill_buffer = await draw_skill_path(skill_path);
         runes_fill(runes_primary, runes_secondary);
-        const rune_buffer = await draw_runes(runes_primary, runes_secondary);
         items_fill(items);
+        shards_fill(shards);
+        const image_buffer = await draw_image();
         message.channel.send({
             files: [
-                skill_buffer,
-                rune_buffer
-//                runes_primary[0],
-//                runes_primary[1],
-//                runes_primary[2],
-//                runes_primary[3],
-//                runes_secondary[0],
-//                runes_secondary[1]
+                image_buffer
             ]
         });
     }
