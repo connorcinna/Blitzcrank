@@ -111,9 +111,36 @@ module.exports.run = async (bot, message, args) => {
             let shard_0 = await canvas.loadImage(shards[0]);
             let shard_1 = await canvas.loadImage(shards[1]);
             let shard_2 = await canvas.loadImage(shards[2]);
-            context.drawImage(shard_0, 144, 200, 32, 32);
-            context.drawImage(shard_1, 144, 248, 32, 32);
-            context.drawImage(shard_1, 144, 306, 32, 32);
+            //shard 0
+            if (shards[0].includes('Force')) {
+                context.drawImage(shard_0, 94, 200, 32, 32);
+            }
+            else if (shards[0].includes('Speed')) {
+                context.drawImage(shard_0, 144, 200, 32, 32);
+            }
+            else { 
+                context.drawImage(shard_0, 194, 200, 32, 32);
+            }
+            //shard 1
+            if (shards[1].includes('Force')) {
+                context.drawImage(shard_1, 94, 248, 32, 32);
+            }
+            else if (shards[1].includes('Armor')) {
+                context.drawImage(shard_1, 144, 248, 32, 32);
+            }
+            else { 
+                context.drawImage(shard_1, 194, 248, 32, 32);
+            }
+            //shard 2
+            if (shards[2].includes('Health')) {
+                context.drawImage(shard_2, 94, 306, 32, 32);
+            }
+            else if (shards[2].includes('Armor')) {
+                context.drawImage(shard_2, 144, 306, 32, 32);
+            }
+            else { 
+                context.drawImage(shard_2, 194, 306, 32, 32);
+            }
 
             return image_canvas.toBuffer();
 
