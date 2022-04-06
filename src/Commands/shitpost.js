@@ -34,10 +34,11 @@ function sentence_generator() {
 }
 
 module.exports.run = async (bot, message, args) => {
+    var template_dir = "../../resources/templates/";
 
-    var file_count = fs.readdirSync("./Commands/templates/").length;
+    var file_count = fs.readdirSync(template_dir).length;
     var image_number = Math.floor(Math.random() * file_count) + 1;
-    var file_name = "./Commands/templates/1 (" + image_number + ").jpg";
+    var file_name = template_dir + "1 (" + image_number + ").jpg";
     var file_name_copy = file_name;
     file_name_copy = file_name_copy.substr(0, file_name_copy.length-5) + ")-COPY.jpg";
     fs.copyFile(file_name, file_name_copy, function (error) {

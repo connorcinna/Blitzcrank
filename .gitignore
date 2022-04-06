@@ -1,3 +1,4 @@
 /src/config.json
-/src/Commands/images
-/src/node_modules
+/resources/images/
+/resources/templates/
+/node_modules/
