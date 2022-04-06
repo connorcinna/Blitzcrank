@@ -32,14 +32,12 @@ client.on("ready", async () => {
     console.log(`${client.user.username} is online!`)
     client.user.setActivity("amogus", {type: "PLAYING"});
     main_channel = client.channels.get(main_channel_id);
-    /*
     const friday = schedule.scheduleJob("00 10 * * 5", err => {
         fridaybabyfuck();
         if (err) {
             console.log(err);
         }
     });
-    */
 
 //    console.log(client.commands);
 });
@@ -59,13 +57,11 @@ client.on("message", async message => {
     //console.log("command being run: " + command_file);
     if(command_file) command_file.run(client, message, args);
 });
-/*
 function fridaybabyfuck() {
     console.log('fridaybabyfuck reached');
     main_channel.send("its friday baby, fuck");
     main_channel.send("https://www.youtube.com/watch?v=WUyJ6N6FD9Q");
 }
-*/
 
 
 client.login(config.client_token);
