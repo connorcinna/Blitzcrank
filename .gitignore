@@ -1,4 +1,4 @@
 /src/config.json
 /src/Commands/images
 /src/node_modules
-./node_modules
+/node_modules
