@@ -12,14 +12,13 @@ const schedule = require('node-schedule');
 const util = require('util');
 const main_channel_id = process.env.main_channel_id || config.main_channel_id;
 var main_channel;
-var log_file = fs.createWriteStream("src/output.log", {flags : 'w'});
-var log_stdout = process.stdout;
-console.log = function(err) {
-    log_file.write(util.format(err) + '\n');
-    log_stdout.write(util.format(err) + '\n');
-}
+//var log_file = fs.createWriteStream("src/output.log", {flags : 'w'});
+//var log_stdout = process.stdout;
+//console.log = function(err) {
+//    log_file.write(util.format(err) + '\n');
+//    log_stdout.write(util.format(err) + '\n');
+//}
 client.commands = new Collection();
-console.log(token);
 client.login(token);
 
 fs.readdir("src/Commands/", (err, files) => {
