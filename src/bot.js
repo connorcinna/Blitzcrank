@@ -1,6 +1,6 @@
-const {Discord, Intents } = require("discord.js");
-const client = new Discord.Client({ intents: [Intents.FLAGS.GUILDS] });
+const {Client, Intents } = require("discord.js");
 const token = process.env.client_token;
+const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 const fs = require("fs");
 const schedule = require('node-schedule');
 const util = require('util');
@@ -12,7 +12,7 @@ console.log = function(err) {
     log_file.write(util.format(err) + '\n');
     log_stdout.write(util.format(err) + '\n');
 }
-client.commands = new Discord.Collection();
+client.commands = new Client.Collection();
 
 fs.readdir("src/Commands/", (err, files) => {
     if (err) console.log(err);
