@@ -1,4 +1,4 @@
-const {Client, Intents } = require("discord.js");
+const {Client, Intents, Collection } = require("discord.js");
 const token = process.env.client_token;
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 const fs = require("fs");
@@ -12,7 +12,7 @@ console.log = function(err) {
     log_file.write(util.format(err) + '\n');
     log_stdout.write(util.format(err) + '\n');
 }
-client.commands = new Client.Collection();
+client.commands = new Collection();
 
 fs.readdir("src/Commands/", (err, files) => {
     if (err) console.log(err);
@@ -60,5 +60,5 @@ function fridaybabyfuck() {
     main_channel.send("its friday baby, fuck");
     main_channel.send("https://www.youtube.com/watch?v=WUyJ6N6FD9Q");
 }
-
+console.log(token);
 client.login(token);
