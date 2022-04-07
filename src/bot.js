@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const client = new Discord.Client({disableEveryone: true});
+const client = new Discord.Client({ intents: [Intents.FLAGS.GUILDS] });
 const fs = require("fs");
 const schedule = require('node-schedule');
 const util = require('util');
