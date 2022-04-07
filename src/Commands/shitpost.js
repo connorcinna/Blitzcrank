@@ -1,6 +1,7 @@
 
 const jimp = require("jimp");
 const fs = require("fs");
+const words = require("../words.json");;
 const nouns = words.noun;
 const verbs = words.verb;
 const adjectives = words.adjective;
