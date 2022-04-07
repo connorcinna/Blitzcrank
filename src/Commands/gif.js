@@ -1,7 +1,7 @@
 const discord = require("discord.js");
 const fetch = require("node-fetch");
-const config = require("../config.json")
-const apikey = config.tenor_key;
+const config = require("../process.env.json")
+const apikey = process.env.tenor_key;
 const fs = require("fs");
 var log_file = fs.createWriteStream("./output.log", {flags : 'w'});
 var log_stdout = process.stdout;

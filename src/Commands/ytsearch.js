@@ -1,12 +1,12 @@
 const discord = require("discord.js");
 const fetch = require("node-fetch");
-const config = require("../config.json");
+
 const fs = require("fs");
 var log_file = fs.createWriteStream("./output.log", {flags : 'w'});
 var log_stdout = process.stdout;
 
 module.exports.run = async (bot, message, args) => {
-    var url = "https://youtube.googleapis.com/youtube/v3/search?q="+args+"&safeSearch=safeSearchSettingUnspecified&videoEmbeddable=videoEmbeddableUnspecified&key="+config.key;
+    var url = "https://youtube.googleapis.com/youtube/v3/search?q="+args+"&safeSearch=safeSearchSettingUnspecified&videoEmbeddable=videoEmbeddableUnspecified&key="+process.env.key;
     fetch(url)
         .then(response => response.json())
         .then(data => {

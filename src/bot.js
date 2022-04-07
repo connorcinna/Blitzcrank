@@ -1,10 +1,10 @@
 const Discord = require("discord.js");
-const config = require("./config.json");
 const client = new Discord.Client({disableEveryone: true});
 const fs = require("fs");
 const schedule = require('node-schedule');
 const util = require('util');
-const main_channel_id = config.main_channel_id;
+//const main_channel_id = config.main_channel_id;
+const main_channel_id = process.env.main_channel_id;
 var main_channel;
 var log_file = fs.createWriteStream("src/output.log", {flags : 'w'});
 var log_stdout = process.stdout;
@@ -48,12 +48,12 @@ client.on("message", async message => {
     } 
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
-    if (cmd.charAt(0) != config.prefix) {
+    if (cmd.charAt(0) != process.env.prefix) {
         return;
     } 
     let args = messageArray.slice(1);
     console.log("args: " + args);
-    let command_file = client.commands.get(cmd.slice(config.prefix.length));
+    let command_file = client.commands.get(cmd.slice(process.env.prefix.length));
     //console.log("command being run: " + command_file);
     if(command_file) command_file.run(client, message, args);
 });
@@ -64,4 +64,4 @@ function fridaybabyfuck() {
 }
 
 
-client.login(config.client_token);
+client.login(process.env.client_token);

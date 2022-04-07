@@ -2,7 +2,7 @@ const discord = require("discord.js");
 const fs = require('fs');
 const readline = require('readline');
 const google = require('googleapis');
-const config = require("../config.json")
+const config = require("../process.env.json")
 module.exports.run = async(bot, message, args) => {
   return message.channel.send("currently disabled");
 }
@@ -10,8 +10,8 @@ module.exports.run = async(bot, message, args) => {
 module.exports.name = "epic"; 
 /*
 const SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly'];
-const TOKEN_PATH = '../config.google.json';
-fs.readFile(config.credentials, (err, content) => {
+const TOKEN_PATH = '../process.env.google.json';
+fs.readFile(process.env.credentials, (err, content) => {
     if (err) console.log('error loading credentials from config', err);
     authorize(JSON.parse(content), listFiles);
 

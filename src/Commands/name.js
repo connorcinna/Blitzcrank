@@ -1,12 +1,12 @@
-const config = require("../config.json");
-const nouns = config.noun;
-const verbs = config.verb;
-const adjectives = config.adjective;
+
+const nouns = process.env.noun;
+const verbs = process.env.verb;
+const adjectives = process.env.adjective;
 function name_generator() {
 
-    var num_adjectives = Object.keys(config.adjective).length;
-    var num_nouns = Object.keys(config.noun).length;
-    var num_verbs = Object.keys(config.verb).length;
+    var num_adjectives = Object.keys(process.env.adjective).length;
+    var num_nouns = Object.keys(process.env.noun).length;
+    var num_verbs = Object.keys(process.env.verb).length;
 
     var random_adjective = Math.floor(Math.random() * num_adjectives);
     var random_noun = Math.floor(Math.random() * num_nouns);
