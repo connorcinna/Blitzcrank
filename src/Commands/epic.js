@@ -2,7 +2,6 @@ const discord = require("discord.js");
 const fs = require('fs');
 const readline = require('readline');
 const google = require('googleapis');
-const config = require("../process.env.json")
 module.exports.run = async(bot, message, args) => {
   return message.channel.send("currently disabled");
 }
