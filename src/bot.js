@@ -4,9 +4,9 @@ const client = new Discord.Client({disableEveryone: true});
 const fs = require("fs");
 const schedule = require('node-schedule');
 const util = require('util');
-const main_channel_id = '98955796129288192';
+const main_channel_id = config.main_channel_id;
 var main_channel;
-var log_file = fs.createWriteStream("./output/output.log", {flags : 'w'});
+var log_file = fs.createWriteStream("src/output.log", {flags : 'w'});
 var log_stdout = process.stdout;
 console.log = function(err) {
     log_file.write(util.format(err) + '\n');
@@ -14,7 +14,7 @@ console.log = function(err) {
 }
 client.commands = new Discord.Collection();
 
-fs.readdir("./Commands/", (err, files) => {
+fs.readdir("src/Commands/", (err, files) => {
     if (err) console.log(err);
     let jsfile = files.filter(f => f.split(".").pop() === "js");
     if(jsfile.length <= 0) {
