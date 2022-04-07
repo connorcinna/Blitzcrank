@@ -1,14 +1,14 @@
 
 const jimp = require("jimp");
 const fs = require("fs");
-const nouns = process.env.noun;
-const verbs = process.env.verb;
-const adjectives = process.env.adjective;
+const nouns = words.noun;
+const verbs = words.verb;
+const adjectives = words.adjective;
 function sentence_generator() {
 
-    var num_adjectives = Object.keys(process.env.adjective).length;
-    var num_nouns = Object.keys(process.env.noun).length;
-    var num_verbs = Object.keys(process.env.verb).length;
+    var num_adjectives = Object.keys(words.adjective).length;
+    var num_nouns = Object.keys(words.noun).length;
+    var num_verbs = Object.keys(words.verb).length;
 
     var random_adjective = Math.floor(Math.random() * num_adjectives);
     var random_noun_s = Math.floor(Math.random() * num_nouns);
@@ -18,7 +18,7 @@ function sentence_generator() {
     var noun_s = nouns[random_noun_s];
     var verb = verbs[random_verb];
     var adjective = adjectives[random_adjective];
-    var noun_o = process.env.noun[random_noun_o];
+    var noun_o = words.noun[random_noun_o];
     var random_num = Math.random();
     if (random_num < 0.25) {
         return (noun_s + ' ' + verb + ' the' + adjective + ' ' + noun_o);

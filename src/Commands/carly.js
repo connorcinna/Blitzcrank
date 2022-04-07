@@ -4,7 +4,7 @@ module.exports.run = async (bot, message, args) => {
     var adj_size = process.env.length;
     var num = Math.floor(Math.random() * adj_size);
 
-    var adjective = process.env.adjective[num];
+    var adjective = words.adjective[num];
     return message.channel.send("Carly is " + adjective);
 }
 module.exports.name = "carly";
