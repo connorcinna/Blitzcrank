@@ -1,5 +1,6 @@
-const Discord = require("discord.js");
+const {Discord, Intents } = require("discord.js");
 const client = new Discord.Client({ intents: [Intents.FLAGS.GUILDS] });
+const token = process.env.client_token;
 const fs = require("fs");
 const schedule = require('node-schedule');
 const util = require('util');
@@ -60,4 +61,4 @@ function fridaybabyfuck() {
     main_channel.send("https://www.youtube.com/watch?v=WUyJ6N6FD9Q");
 }
 
-client.login(process.env.client_token);
+client.login(token);
