@@ -19,6 +19,7 @@ var main_channel;
 //    log_stdout.write(util.format(err) + '\n');
 //}
 client.commands = new Collection();
+console.log(token);
 client.login(token);
 
 fs.readdir("src/Commands/", (err, files) => {
