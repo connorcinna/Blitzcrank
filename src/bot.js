@@ -1,10 +1,16 @@
 const {Client, Intents, Collection } = require("discord.js");
-const token = process.env.client_token;
+var config;
+if (!(process.env.client_token)) {
+    console.log('in development');
+    config = require('./config.json');
+}
+else {console.log('in production')}
+const token = process.env.client_token || config.client_token;  //prefer the production token if possible
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 const fs = require("fs");
 const schedule = require('node-schedule');
 const util = require('util');
-const main_channel_id = process.env.main_channel_id;
+const main_channel_id = process.env.main_channel_id || config.main_channel_id;
 var main_channel;
 var log_file = fs.createWriteStream("src/output.log", {flags : 'w'});
 var log_stdout = process.stdout;
@@ -13,6 +19,8 @@ console.log = function(err) {
     log_stdout.write(util.format(err) + '\n');
 }
 client.commands = new Collection();
+console.log(token);
+client.login(token);
 
 fs.readdir("src/Commands/", (err, files) => {
     if (err) console.log(err);
@@ -31,7 +39,7 @@ fs.readdir("src/Commands/", (err, files) => {
 client.on("ready", async () => {
     console.log(`${client.user.username} is online!`)
     client.user.setActivity("amogus", {type: "PLAYING"});
-    main_channel = client.channels.get(main_channel_id);
+    main_channel = client.channels.cache.get(main_channel_id);
     const friday = schedule.scheduleJob("00 10 * * 5", err => {
         fridaybabyfuck();
         if (err) {
@@ -60,5 +68,3 @@ function fridaybabyfuck() {
     main_channel.send("its friday baby, fuck");
     main_channel.send("https://www.youtube.com/watch?v=WUyJ6N6FD9Q");
 }
-console.log(token);
-client.login(token);
