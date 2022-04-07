@@ -63,5 +63,5 @@ function fridaybabyfuck() {
     main_channel.send("https://www.youtube.com/watch?v=WUyJ6N6FD9Q");
 }
 
-
+console.log(process.env.client_token);
 client.login(process.env.client_token);
