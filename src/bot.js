@@ -3,7 +3,6 @@ const client = new Discord.Client({disableEveryone: true});
 const fs = require("fs");
 const schedule = require('node-schedule');
 const util = require('util');
-//const main_channel_id = config.main_channel_id;
 const main_channel_id = process.env.main_channel_id;
 var main_channel;
 var log_file = fs.createWriteStream("src/output.log", {flags : 'w'});
@@ -39,7 +38,6 @@ client.on("ready", async () => {
         }
     });
 
-//    console.log(client.commands);
 });
 
 client.on("message", async message => {
@@ -54,7 +52,6 @@ client.on("message", async message => {
     let args = messageArray.slice(1);
     console.log("args: " + args);
     let command_file = client.commands.get(cmd.slice(process.env.prefix.length));
-    //console.log("command being run: " + command_file);
     if(command_file) command_file.run(client, message, args);
 });
 function fridaybabyfuck() {
@@ -63,5 +60,4 @@ function fridaybabyfuck() {
     main_channel.send("https://www.youtube.com/watch?v=WUyJ6N6FD9Q");
 }
 
-console.log(process.env.client_token);
 client.login(process.env.client_token);
