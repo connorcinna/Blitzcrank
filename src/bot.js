@@ -5,21 +5,15 @@ if (!(process.env.client_token)) {
     config = require('./config.json');
 }
 else {console.log('in production')}
+const prefix = process.env.prefix || config.prefix;
 const token = process.env.client_token || config.client_token;  //prefer the production token if possible
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+const main_channel_id = process.env.main_channel_id || config.main_channel_id;
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 const fs = require("fs");
 const schedule = require('node-schedule');
-const util = require('util');
-const main_channel_id = process.env.main_channel_id || config.main_channel_id;
 var main_channel;
-//var log_file = fs.createWriteStream("src/output.log", {flags : 'w'});
-//var log_stdout = process.stdout;
-//console.log = function(err) {
-//    log_file.write(util.format(err) + '\n');
-//    log_stdout.write(util.format(err) + '\n');
-//}
+
 client.commands = new Collection();
-console.log(token);
 client.login(token);
 
 fs.readdir("src/Commands/", (err, files) => {
@@ -35,8 +29,7 @@ fs.readdir("src/Commands/", (err, files) => {
         client.commands.set(props.name, props);
     });
 });
-
-client.on("ready", async () => {
+client.on("ready", async () => { //gets triggered
     console.log(`${client.user.username} is online!`)
     client.user.setActivity("amogus", {type: "PLAYING"});
     main_channel = client.channels.cache.get(main_channel_id);
@@ -49,18 +42,18 @@ client.on("ready", async () => {
 
 });
 
-client.on("message", async message => {
+client.on("messageCreate", async message => { //doesn't get triggered
     if(message.channel.type === "dm") {
         return;
     } 
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
-    if (cmd.charAt(0) != process.env.prefix) {
+    if (cmd.charAt(0) != prefix) {
         return;
     } 
     let args = messageArray.slice(1);
     console.log("args: " + args);
-    let command_file = client.commands.get(cmd.slice(process.env.prefix.length));
+    let command_file = client.commands.get(cmd.slice(prefix.length));
     if(command_file) command_file.run(client, message, args);
 });
 function fridaybabyfuck() {
