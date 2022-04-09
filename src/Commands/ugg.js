@@ -3,6 +3,13 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 const canvas = require("canvas"); 
+const webp = require('webp-converter')
+if (process.env.client_token) {
+    module.exports.run = async (bot, message, args) => {
+        message.channel.send("disabled because u.gg changed their image formats");
+    }
+}
+else {
 module.exports.run = async (bot, message, args) => {
     try { 
         var url;
@@ -106,8 +113,11 @@ module.exports.run = async (bot, message, args) => {
             const context = image_canvas.getContext('2d');
             console.log('context created')
             //runes
-            let keystone = await canvas.loadImage(runes_primary[0]);
+
             console.log(runes_primary[0]);
+
+            let keystone = await canvas.loadImage(runes_primary[0]);
+            console.log('laoded keystone')
             let p_rune0 = await canvas.loadImage(runes_primary[1]);
             let p_rune1 = await canvas.loadImage(runes_primary[2]);
             let p_rune2 = await canvas.loadImage(runes_primary[3]);
@@ -176,6 +186,11 @@ module.exports.run = async (bot, message, args) => {
 
 
         skill_fill(skill_path);
+        //for each of these arrays, convert the webp images to jpgs
+        //this may involve having to save them somewhere, as this would be require modifying the image
+        skill_path.forEach(e => {
+            webp.cwebp(e, )
+        }) 
         runes_fill(runes_primary, runes_secondary);
         items_fill(items);
         shards_fill(shards);
@@ -190,4 +205,6 @@ module.exports.run = async (bot, message, args) => {
         console.log(error);
     }
 };
+}
+
 module.exports.name = "ugg";
