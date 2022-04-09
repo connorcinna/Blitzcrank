@@ -107,11 +107,13 @@ module.exports.run = async (bot, message, args) => {
             console.log('context created')
             //runes
             let keystone = await canvas.loadImage(runes_primary[0]);
+            console.log(runes_primary[0]);
             let p_rune0 = await canvas.loadImage(runes_primary[1]);
             let p_rune1 = await canvas.loadImage(runes_primary[2]);
             let p_rune2 = await canvas.loadImage(runes_primary[3]);
             let s_rune0 = await canvas.loadImage(runes_secondary[0]);
             let s_rune1 = await canvas.loadImage(runes_secondary[1]);
+            console.log('about to draw keystone')
             context.drawImage(keystone, 0, 0, 64, 64);
             context.drawImage(p_rune0, 0, 96, 64, 64);
             context.drawImage(p_rune1, 0, 192, 64, 64);
