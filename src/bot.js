@@ -14,6 +14,7 @@ const schedule = require('node-schedule');
 var main_channel;
 
 client.commands = new Collection();
+console.log(token);
 client.login(token);
 
 fs.readdir("src/Commands/", (err, files) => {
