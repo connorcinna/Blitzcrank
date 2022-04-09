@@ -1,5 +1,5 @@
-const discord = require("discord.js");
-const fetch = require("node-fetch");
+//const discord = require("discord.js");
+//const fetch = require("node-fetch");
 const axios = require("axios");
 const cheerio = require("cheerio");
 const canvas = require("canvas"); 
@@ -81,6 +81,17 @@ module.exports.run = async (bot, message, args) => {
                 runes_secondary.push(perk);
             });
         }
+
+        function items_fill(items) {
+            let item_path = $("div[class='content-section content-section_no-padding recommended-build_items media-query media-query_DESKTOP_MEDIUM__DESKTOP_LARGE']");
+            $(item_path).find("div[class='item-img']").each((i, element) => {
+                let element_string = $(element).html();
+                let result_start = element_string.indexOf('(')+1;
+                let result_end = element_string.indexOf(')');
+                let result = element_string.substring(result_start, result_end);
+                items.push(result);
+            });    
+        }
         function shards_fill(shards) {
             let shard_tree = $("div[class='rune-tree_v2 stat-shards-container_v2']");
             $(shard_tree).find("div[class='shard shard-active']").each((i, element) => {
@@ -91,8 +102,9 @@ module.exports.run = async (bot, message, args) => {
         }
         async function draw_image() {
             const image_canvas = canvas.createCanvas(360, 550);
+            console.log('canvas created')
             const context = image_canvas.getContext('2d');
-
+            console.log('context created')
             //runes
             let keystone = await canvas.loadImage(runes_primary[0]);
             let p_rune0 = await canvas.loadImage(runes_primary[1]);
@@ -106,6 +118,7 @@ module.exports.run = async (bot, message, args) => {
             context.drawImage(p_rune2, 0, 288, 64, 64);
             context.drawImage(s_rune0, 128, 0, 64, 64);           
             context.drawImage(s_rune1, 128, 96, 64, 64);           
+            console.log('runes drawn on context')
 
             //skill order
             let right_arrow = await canvas.loadImage('../resources/right.jpg');
@@ -117,6 +130,7 @@ module.exports.run = async (bot, message, args) => {
             context.drawImage(skill_1, 144, 448, 72, 72);
             context.drawImage(right_arrow, 216 , 448, 72, 72);
             context.drawImage(skill_2, 288, 448, 72, 72);
+            console.log('skills drawn on context')
 
             //stat shards
             let shard_0 = await canvas.loadImage(shards[0]);
@@ -152,20 +166,12 @@ module.exports.run = async (bot, message, args) => {
             else { 
                 context.drawImage(shard_2, 194, 306, 32, 32);
             }
+            console.log('shards drawn to context')
 
             return image_canvas.toBuffer();
 
         }
-        function items_fill(items) {
-            let item_path = $("div[class='content-section content-section_no-padding recommended-build_items media-query media-query_DESKTOP_MEDIUM__DESKTOP_LARGE']");
-            $(item_path).find("div[class='item-img']").each((i, element) => {
-                let element_string = $(element).html();
-                let result_start = element_string.indexOf('(')+1;
-                let result_end = element_string.indexOf(')');
-                let result = element_string.substring(result_start, result_end);
-                items.push(result);
-            });    
-        }
+
 
         skill_fill(skill_path);
         runes_fill(runes_primary, runes_secondary);
