@@ -1,4 +1,4 @@
-const words = require("../words.json");;
+const words = require("../words.json");
 const nouns = words.noun;
 const verbs = words.verb;
 const adjectives = words.adjective;
