@@ -31,7 +31,7 @@ fs.readdir("src/Commands/", (err, files) => {
 });
 client.on("ready", async () => { //gets triggered
     console.log(`${client.user.username} is online!`)
-    client.user.setActivity("amogus", {type: "PLAYING"});
+    client.user.setActivity("Jerma985", {type: "WATCHING"});
     main_channel = client.channels.cache.get(main_channel_id);
     const friday = schedule.scheduleJob("00 10 * * 5", err => {
         fridaybabyfuck();
