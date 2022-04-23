@@ -66,6 +66,7 @@ module.exports.run = async (bot, message, args) => {
             let skills = $("div[class='skill-priority-path']");
             $(skills).find("div[class='champion-skill-with-label']").each((i, element) =>  {
                 if (i>2) return false; 
+
                 var skill = $(element).find('img').attr('src');
                 skill_path.push(skill);
             });
@@ -150,7 +151,7 @@ module.exports.run = async (bot, message, args) => {
             context.drawImage(s_rune1, 128, 96, 64, 64);           
 
             //skill order
-            let right_arrow = await canvas.loadImage('../resources/right.jpg');
+            let right_arrow = await canvas.loadImage('./resources/right.jpg');
             let skill_0 = await canvas.loadImage(skill_path[0]);
             let skill_1 = await canvas.loadImage(skill_path[1]);
             let skill_2 = await canvas.loadImage(skill_path[2]);

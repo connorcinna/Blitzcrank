@@ -1,8 +1,6 @@
 const discord = require("discord.js");
 const fetch = require("node-fetch");
 const fs = require("fs");
-var log_file = fs.createWriteStream("./output.log", {flags : 'w'});
-var log_stdout = process.stdout;
 module.exports.run = async (bot, message, args) => {
         var str = args.toString().replace(/,'/g, "");
         console.log('parameter passed: ' + str);
@@ -20,7 +18,7 @@ module.exports.run = async (bot, message, args) => {
                     } 
                 }
                 else  {
-                    message.channel.send({files: ["../../resources/no search results lol.png"]});
+                    message.channel.send({files: ["./resources/no search results lol.png"]});
 
                 }
                 if (data.error != undefined && data.error.code === 429) {
