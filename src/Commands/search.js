@@ -42,4 +42,4 @@ module.exports.run = async (bot, message, args) => {
                 
         });
 }
-module.exports.name = "gsearch";
+module.exports.name = "search";

@@ -17,4 +17,4 @@ module.exports.run = async (bot, message, args) => {
             message.channel.send("https://www.youtube.com/watch?v="+data.items[num].id.videoId);
         });
 }
-module.exports.name = "ytsearch";
+module.exports.name = "vid";
