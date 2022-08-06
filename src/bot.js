@@ -47,6 +47,10 @@ client.on("messageCreate", async message => { //doesn't get triggered
         return;
     } 
     let messageArray = message.content.split(" ");
+    //if message sent in the channel is a twitter link
+    if (messageArray[0].contains("https://twitter.com/")) { 
+        vxtwitter(messageArray[0]);
+    }
     let cmd = messageArray[0];
     if (cmd.charAt(0) != prefix) {
         return;
@@ -60,4 +64,10 @@ function fridaybabyfuck() {
     console.log('fridaybabyfuck reached');
     main_channel.send("its friday baby, fuck");
     main_channel.send("https://www.youtube.com/watch?v=WUyJ6N6FD9Q");
+}
+function vxtwitter(message) {
+    console.log("twitter link posted");
+//    if (link is a video) {
+//        let messageArray = message.split("https://twitter.com/");
+//    }
 }
