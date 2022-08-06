@@ -1,6 +1,9 @@
 const discord = require("discord.js");
 const fetch = require("node-fetch");
-const config = require("../config.json");
+var config;
+if (!(process.env.client_token)) {
+    config = require('./config.json');
+}
 const yt_key = process.env.key || config.yt_key; 
 module.exports.run = async (bot, message, args) => {
     var url = "https://youtube.googleapis.com/youtube/v3/search?q="+args+"&safeSearch=safeSearchSettingUnspecified&videoEmbeddable=videoEmbeddableUnspecified&key="+yt_key;
