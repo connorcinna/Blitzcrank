@@ -66,7 +66,7 @@ function fridaybabyfuck() {
     main_channel.send("https://www.youtube.com/watch?v=WUyJ6N6FD9Q");
 }
 function vxtwitter(message) {
-    console.log("twitter link posted");
+   main_channel.send("twitter link posted");
 //    if (link is a video) {
 //        let messageArray = message.split("https://twitter.com/");
 //    }
