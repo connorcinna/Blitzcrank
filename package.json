@@ -20,6 +20,7 @@
     "node-gyp": "^9.0.0",
     "node-schedule": "^2.1.0",
     "nth-check": "^2.0.1",
+    "twitter-api-v2": "^1.12.3",
     "uws": "^200.0.0",
     "webp-converter": "^2.3.3"
   }

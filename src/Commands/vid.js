@@ -2,7 +2,7 @@ const discord = require("discord.js");
 const fetch = require("node-fetch");
 var config;
 if (!(process.env.client_token)) {
-    config = require('./config.json');
+    config = require('../config.json');
 }
 const yt_key = process.env.yt_key || config.yt_key; 
 module.exports.run = async (bot, message, args) => {
