@@ -15,7 +15,7 @@ const twitter = process.env.twitter || config.twitter;
 const twitter_client = new TwitterApi({
     appKey: twitter.api_key,
     appSecret: twitter.api_key_secret,
-    accessToken: twitter.access_token,
+    accessToken: twitter.access_token_key,
     accessSecret: twitter.access_token_secret,
 });
 const fs = require("fs");
