@@ -12,6 +12,7 @@ const token = process.env.client_token || config.client_token;  //prefer the pro
 const main_channel_id = process.env.main_channel_id || config.main_channel_id;
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 const twitter = process.env.twitter || config.twitter;
+console.log(twitter);
 const twitter_client = new TwitterApi({
     appKey: twitter.api_key,
     appSecret: twitter.api_key_secret,
