@@ -81,7 +81,7 @@ async function vxtwitter(twitter_link, message) {
     if (twitter_link.includes('?')) { //some links have '?' in them, idk why
         twitter_link = twitter_link.substring(0, twitter_link.indexOf('?'));
     }
-    await twitter_client.v2.singleTweet(twitter_link, {
+    await rw_twitter_client.v2.singleTweet(twitter_link, {
         expansions: ['attachments.media_keys'],
         'media.fields': [
             'type'
