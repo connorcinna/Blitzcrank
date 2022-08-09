@@ -12,13 +12,13 @@ const token = process.env.client_token || config.client_token;  //prefer the pro
 const main_channel_id = process.env.main_channel_id || config.main_channel_id;
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 const twitter = process.env.twitter || config.twitter;
-console.log(twitter);
 const twitter_client = new TwitterApi({
     appKey: twitter.api_key,
-    appSecret: twitter.api_key_secret
-    //accessToken: twitter.access_token_key,
-    //accessSecret: twitter.access_token_secret,
+    appSecret: twitter.api_key_secret,
+    accessToken: twitter.access_token_key,
+    accessSecret: twitter.access_token_secret
 });
+const rw_twitter_client = twitter_client.readWrite;
 const fs = require("fs");
 const schedule = require('node-schedule');
 var main_channel;
@@ -74,14 +74,14 @@ function fridaybabyfuck() {
     main_channel.send("its friday baby, fuck");
     main_channel.send("https://www.youtube.com/watch?v=WUyJ6N6FD9Q");
 }
-function vxtwitter(twitter_link, message) {
+async function vxtwitter(twitter_link, message) {
     let twitter_link_copy = twitter_link; //keep a copy of original link
     twitter_linkArray = twitter_link.split("/");
     twitter_link = twitter_linkArray[twitter_linkArray.length-1]; // just the last part of the url
     if (twitter_link.includes('?')) { //some links have '?' in them, idk why
         twitter_link = twitter_link.substring(0, twitter_link.indexOf('?'));
     }
-    twitter_client.v2.singleTweet(twitter_link, {
+    await twitter_client.v2.singleTweet(twitter_link, {
         expansions: ['attachments.media_keys'],
         'media.fields': [
             'type'
