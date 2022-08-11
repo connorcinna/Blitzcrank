@@ -12,12 +12,14 @@ const token = process.env.client_token || config.client_token;  //prefer the pro
 const main_channel_id = process.env.main_channel_id || config.main_channel_id;
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 const twitter = process.env.twitter || config.twitter;
-const twitter_client = new TwitterApi({
-    appKey: twitter.api_key,
-    appSecret: twitter.api_key_secret,
-    accessToken: twitter.access_token_key,
-    accessSecret: twitter.access_token_secret
-});
+//const twitter_client = new TwitterApi({
+//    appKey: twitter.api_key,
+//    appSecret: twitter.api_key_secret,
+//    accessToken: twitter.access_token_key,
+//    accessSecret: twitter.access_token_secret
+//});
+const twitter_client = new TwitterApi(twitter.bearer_token);
+const ro_twitter_client = twitter_client.readOnly;
 const fs = require("fs");
 const schedule = require('node-schedule');
 var main_channel;
@@ -80,7 +82,7 @@ async function vxtwitter(twitter_link, message) {
     if (twitter_link.includes('?')) { //some links have '?' in them, idk why
         twitter_link = twitter_link.substring(0, twitter_link.indexOf('?'));
     }
-     const tweet = await twitter_client.v2.singleTweet(twitter_link, {
+     const tweet = await ro_twitter_client.v2.singleTweet(twitter_link, {
         expansions: ['attachments.media_keys'],
         'media.fields': [
             'type'
