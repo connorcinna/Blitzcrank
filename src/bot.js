@@ -12,13 +12,14 @@ const token = process.env.client_token || config.client_token;  //prefer the pro
 const main_channel_id = process.env.main_channel_id || config.main_channel_id;
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 const twitter = process.env.twitter || config.twitter;
-//const twitter_client = new TwitterApi({
-//    appKey: twitter.api_key,
-//    appSecret: twitter.api_key_secret,
-//    accessToken: twitter.access_token_key,
-//    accessSecret: twitter.access_token_secret
-//});
-const twitter_client = new TwitterApi(twitter.bearer_token);
+console.log('twitter: ' + twitter);
+const twitter_client = new TwitterApi({
+    appKey: twitter.api_key,
+    appSecret: twitter.api_key_secret,
+    accessToken: twitter.access_token_key,
+    accessSecret: twitter.access_token_secret
+});
+console.log('twitter_client: ' + twitter_client);
 const ro_twitter_client = twitter_client.readOnly;
 const fs = require("fs");
 const schedule = require('node-schedule');
