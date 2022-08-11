@@ -73,14 +73,14 @@ function fridaybabyfuck() {
     main_channel.send("its friday baby, fuck");
     main_channel.send("https://www.youtube.com/watch?v=WUyJ6N6FD9Q");
 }
-function vxtwitter(twitter_link, message) {
+async function vxtwitter(twitter_link, message) {
     let twitter_link_copy = twitter_link; //keep a copy of original link
     twitter_linkArray = twitter_link.split("/");
     twitter_link = twitter_linkArray[twitter_linkArray.length-1]; // just the last part of the url
     if (twitter_link.includes('?')) { //some links have '?' in them, idk why
         twitter_link = twitter_link.substring(0, twitter_link.indexOf('?'));
     }
-    twitter_client.v2.singleTweet(twitter_link, {
+     const tweet = await twitter_client.v2.singleTweet(twitter_link, {
         expansions: ['attachments.media_keys'],
         'media.fields': [
             'type'
