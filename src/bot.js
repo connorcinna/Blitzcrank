@@ -1,5 +1,4 @@
 const {Client, Intents, Collection } = require("discord.js");
-const {TwitterApi} = require('twitter-api-v2')
 
 var config;
 if (!(process.env.client_token)) {
@@ -11,16 +10,6 @@ const prefix = process.env.prefix || config.prefix;
 const token = process.env.client_token || config.client_token;  //prefer the production token if possible
 const main_channel_id = process.env.main_channel_id || config.main_channel_id;
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
-const twitter = process.env.twitter || config.twitter;
-console.log('twitter: ' + twitter);
-const twitter_client = new TwitterApi({
-    appKey: twitter.api_key,
-    appSecret: twitter.api_key_secret,
-    accessToken: twitter.access_token_key,
-    accessSecret: twitter.access_token_secret
-});
-console.log('twitter_client: ' + twitter_client);
-const ro_twitter_client = twitter_client.readOnly;
 const fs = require("fs");
 const schedule = require('node-schedule');
 var main_channel;
@@ -54,7 +43,7 @@ client.on("ready", async () => { //gets triggered
 
 });
 
-client.on("messageCreate", async message => { //doesn't get triggered
+client.on("messageCreate", async message => { 
     if(message.channel.type === "dm") {
         return;
     } 
@@ -76,26 +65,8 @@ function fridaybabyfuck() {
     main_channel.send("its friday baby, fuck");
     main_channel.send("https://www.youtube.com/watch?v=WUyJ6N6FD9Q");
 }
-async function vxtwitter(twitter_link, message) {
-    let twitter_link_copy = twitter_link; //keep a copy of original link
-    twitter_linkArray = twitter_link.split("/");
-    twitter_link = twitter_linkArray[twitter_linkArray.length-1]; // just the last part of the url
-    if (twitter_link.includes('?')) { //some links have '?' in them, idk why
-        twitter_link = twitter_link.substring(0, twitter_link.indexOf('?'));
-    }
-     const tweet = await ro_twitter_client.v2.singleTweet(twitter_link, {
-        expansions: ['attachments.media_keys'],
-        'media.fields': [
-            'type'
-        ],
-    }).then((val) => {
-        val = val.includes.media[0].type; //focus in on the media type
-        if (val == 'video') {
-            var vx_output = ['https://vx', twitter_link_copy.slice(8)].join('');
-            message.channel.send("posted by " + message.author.username + '\n' + vx_output);
-            message.delete();
-        }
-    }).catch((err) => {
-        console.log(err);
-    })
+function vxtwitter(twitter_link, message) {
+        var vx_output = ['https://vx', twitter_link.slice(8)].join('');
+        message.channel.send("posted by " + message.author.username + '\n' + vx_output);
+        message.delete();
 }
