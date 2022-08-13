@@ -1,5 +1,7 @@
 const {Client, Intents, Collection } = require("discord.js");
-
+const { TwitterApi } = require("twitter-api-v2");
+const fs = require("fs");
+const schedule = require('node-schedule');
 var config;
 if (!(process.env.client_token)) {
     console.log('in development');
@@ -10,8 +12,14 @@ const prefix = process.env.prefix || config.prefix;
 const token = process.env.client_token || config.client_token;  //prefer the production token if possible
 const main_channel_id = process.env.main_channel_id || config.main_channel_id;
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
-const fs = require("fs");
-const schedule = require('node-schedule');
+const twitter = process.env.twitter || config.twitter;
+const twitter_client = new TwitterApi({
+    appKey: twitter.appKey,
+    appSecret: twitter.appSecret,
+    accessToken: twitter.accessToken,
+    accessSecret: twitter.accessSecret
+});
+
 var main_channel;
 
 client.commands = new Collection();
@@ -66,7 +74,23 @@ function fridaybabyfuck() {
     main_channel.send("https://www.youtube.com/watch?v=WUyJ6N6FD9Q");
 }
 function vxtwitter(twitter_link, message) {
-        var vx_output = ['https://vx', twitter_link.slice(8)].join('');
-        message.channel.send("posted by " + message.author.username + '\n' + vx_output);
-        message.delete();
+    let twitter_link_array = twitter_link.split('/');
+    let tweet_id = twitter_link_array[twitter_link_array.length-1];
+    let q_index = -1;
+    if ((q_index = tweet_id.indexOf('?')) != -1) {
+        tweet_id = tweet_id.substring(0, q_index);
+    }
+    twitter_client.v2.singleTweet(tweet_id, {
+        expansions: ['attachments.media_keys'],
+        'media.fields': ['type'],
+    }).then((val) => {
+        val = val.includes.media[0].type;
+        if (val == 'video') {
+            var vx_output = ['https://vx', twitter_link.slice(8)].join('');
+            message.channel.send("posted by " + message.author.username + '\n' + vx_output);
+            message.delete();
+        }
+        }).catch((err) => {
+            console.log(err);
+        })
 }
