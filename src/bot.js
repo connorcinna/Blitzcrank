@@ -12,13 +12,7 @@ const prefix = process.env.prefix || config.prefix;
 const token = process.env.client_token || config.client_token;  //prefer the production token if possible
 const main_channel_id = process.env.main_channel_id || config.main_channel_id;
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
-const twitter = process.env.twitter || config.twitter;
-const twitter_client = new TwitterApi({
-    appKey: twitter.appKey,
-    appSecret: twitter.appSecret,
-    accessToken: twitter.accessToken,
-    accessSecret: twitter.accessSecret
-});
+
 
 var main_channel;
 
@@ -73,14 +67,21 @@ function fridaybabyfuck() {
     main_channel.send("its friday baby, fuck");
     main_channel.send("https://www.youtube.com/watch?v=WUyJ6N6FD9Q");
 }
-function vxtwitter(twitter_link, message) {
+async function vxtwitter(twitter_link, message) {
+    const twitter = process.env.twitter || config.twitter;
+    const twitter_client = new TwitterApi({
+        appKey: twitter.appKey,
+        appSecret: twitter.appSecret,
+        accessToken: twitter.accessToken,
+        accessSecret: twitter.accessSecret
+    });
     let twitter_link_array = twitter_link.split('/');
     let tweet_id = twitter_link_array[twitter_link_array.length-1];
     let q_index = -1;
     if ((q_index = tweet_id.indexOf('?')) != -1) {
         tweet_id = tweet_id.substring(0, q_index);
     }
-    twitter_client.v2.singleTweet(tweet_id, {
+    const tweet = await twitter_client.v2.singleTweet(tweet_id, {
         expansions: ['attachments.media_keys'],
         'media.fields': ['type'],
     }).then((val) => {
