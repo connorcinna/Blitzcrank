@@ -1,4 +1,5 @@
 const {Client, Intents, Collection } = require("discord.js");
+const util = require('util')
 const { TwitterApi } = require("twitter-api-v2");
 const fs = require("fs");
 const schedule = require('node-schedule');
@@ -75,15 +76,14 @@ async function vxtwitter(twitter_link, message) {
     if ((q_index = tweet_id.indexOf('?')) != -1) {
         tweet_id = tweet_id.substring(0, q_index);
     }
-    console.log(tweet_id);
     const tweet = await twitter_client.v2.singleTweet(tweet_id, {
-        expansions: ['attachments.media_keys'],
+        expansions: ['attachments.media_keys', 'referenced_tweets.id'],
         'media.fields': ['type'],
+        //'tweet.fields' : ['id']
     }).then((val) => {
-        console.log(val);
-        val = val.includes.media[0].type;
-        console.log(val);
-        if (val == 'video') {
+        console.log('val: ' + util.inspect(val, {showHidden: false, depth: null, colors: true}));
+        let val_type = val.includes.media[0].type;
+        if (val_type && val_type == 'video') {
             var vx_output = ['https://vx', twitter_link.slice(8)].join('');
             message.channel.send("posted by " + message.author.username + '\n' + vx_output);
             message.delete();
