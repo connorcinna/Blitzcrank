@@ -1,4 +1,3 @@
-const discord = require("discord.js");
 const fetch = require("node-fetch");
 var config;
 if (!(process.env.client_token)) {
@@ -10,6 +9,7 @@ module.exports.run = async (bot, message, args) => {
     fetch(url)
         .then(response => response.json())
         .then(data => {
+            console.log(data);
             var num = 0;
             while (!data.items[num].id.videoId) {
                 num++;
