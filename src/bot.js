@@ -79,6 +79,7 @@ async function vxtwitter(twitter_link, message) {
 //        accessSecret: auth_link.oauth_token_secret 
 //    });
 //    const {accessToken, accessSecret} = twitter_client.login()
+    console.log('twitter.bearer_token: ' + twitter.bearer_token);
     const twitter_client = new TwitterApi(twitter.bearer_token);
     let twitter_link_array = twitter_link.split('/');
     let tweet_id = twitter_link_array[twitter_link_array.length-1];
