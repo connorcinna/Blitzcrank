@@ -68,17 +68,6 @@ function fridaybabyfuck() {
     main_channel.send("https://www.youtube.com/watch?v=WUyJ6N6FD9Q");
 }
 async function vxtwitter(twitter_link, message) {
-    const twitter = process.env.twitter || config.twitter;
-//    const temp_client = new TwitterApi({appKey: twitter.appKey, appSecret = twitter.appSecret});
-//    const auth_link = await temp_client.generateAuthLink('oob') //out of bounds
-//    console.log('Please go to ' + auth_link.url);
-//    const twitter_client = new TwitterApi({
-//        appKey: twitter.appKey,
-//        appSecret: twitter.appSecret,
-//        accessToken: auth_link.oauth_token,
-//        accessSecret: auth_link.oauth_token_secret 
-//    });
-//    const {accessToken, accessSecret} = twitter_client.login()
     const twitter_client = new TwitterApi("AAAAAAAAAAAAAAAAAAAAAIidfgEAAAAA1fnBkTkHjqlG64AgjtEud8683ow%3DPC2ShBwKRVYBrBi5SxOWgBVfbBS4mb09gQr1Uj3XANpqX10EP6");
     let twitter_link_array = twitter_link.split('/');
     let tweet_id = twitter_link_array[twitter_link_array.length-1];
@@ -86,11 +75,14 @@ async function vxtwitter(twitter_link, message) {
     if ((q_index = tweet_id.indexOf('?')) != -1) {
         tweet_id = tweet_id.substring(0, q_index);
     }
+    console.log(tweet_id);
     const tweet = await twitter_client.v2.singleTweet(tweet_id, {
         expansions: ['attachments.media_keys'],
         'media.fields': ['type'],
     }).then((val) => {
+        console.log(val);
         val = val.includes.media[0].type;
+        console.log(val);
         if (val == 'video') {
             var vx_output = ['https://vx', twitter_link.slice(8)].join('');
             message.channel.send("posted by " + message.author.username + '\n' + vx_output);
