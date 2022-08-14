@@ -69,12 +69,17 @@ function fridaybabyfuck() {
 }
 async function vxtwitter(twitter_link, message) {
     const twitter = process.env.twitter || config.twitter;
-    const twitter_client = new TwitterApi({
-        appKey: twitter.appKey,
-        appSecret: twitter.appSecret,
-        accessToken: twitter.accessToken,
-        accessSecret: twitter.accessSecret
-    });
+//    const temp_client = new TwitterApi({appKey: twitter.appKey, appSecret = twitter.appSecret});
+//    const auth_link = await temp_client.generateAuthLink('oob') //out of bounds
+//    console.log('Please go to ' + auth_link.url);
+//    const twitter_client = new TwitterApi({
+//        appKey: twitter.appKey,
+//        appSecret: twitter.appSecret,
+//        accessToken: auth_link.oauth_token,
+//        accessSecret: auth_link.oauth_token_secret 
+//    });
+//    const {accessToken, accessSecret} = twitter_client.login()
+    const twitter_client = new TwitterApi(twitter.bearer_token);
     let twitter_link_array = twitter_link.split('/');
     let tweet_id = twitter_link_array[twitter_link_array.length-1];
     let q_index = -1;
