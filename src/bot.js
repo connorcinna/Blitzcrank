@@ -16,8 +16,8 @@ const config = require('config');
 //const prefix = process.env.prefix || config.prefix;
 //const token = process.env.client_token || config.client_token;  //prefer the production token if possible
 //const main_channel_id = process.env.main_channel_id || config.main_channel_id;
-const prefix = config.get("prefix");
 const token = config.get("client_token");
+const prefix = config.get("prefix");
 const main_channel_id = config.get("main_channel_id");
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
@@ -76,7 +76,6 @@ function fridaybabyfuck() {
     main_channel.send("https://www.youtube.com/watch?v=WUyJ6N6FD9Q");
 }
 async function vxtwitter(twitter_link, message) {
-    //replace raw bearer token with TWITTER_BEARER_TOKEN
     //const twitter_client = new TwitterApi("AAAAAAAAAAAAAAAAAAAAAIidfgEAAAAA1fnBkTkHjqlG64AgjtEud8683ow%3DPC2ShBwKRVYBrBi5SxOWgBVfbBS4mb09gQr1Uj3XANpqX10EP6");
     const twitter_client = new TwitterApi(config.get("twitter_bearer_token"));
 

@@ -2,3 +2,4 @@
 /resources/images/
 /resources/templates/
 /node_modules/
+.env
