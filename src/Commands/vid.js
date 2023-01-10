@@ -1,9 +1,13 @@
 const fetch = require("node-fetch");
-var config;
-if (!(process.env.client_token)) {
-    config = require('../config.json');
-}
-const yt_key = process.env.yt_key || config.yt_key; 
+const dotenv = require('dotenv');
+dotenv.config();
+const config = require('config');
+//var config;
+//if (!(process.env.client_token)) {
+//    config = require('../config.json');
+//}
+//const yt_key = process.env.yt_key || config.yt_key; 
+const yt_key = config.get("yt_key");
 module.exports.run = async (bot, message, args) => {
     var url = "https://youtube.googleapis.com/youtube/v3/search?q="+args+"&safeSearch=safeSearchSettingUnspecified&videoEmbeddable=videoEmbeddableUnspecified&key="+yt_key;
     fetch(url)
