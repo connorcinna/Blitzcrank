@@ -17,12 +17,8 @@ the commands with names, i.e. !armin or !ethan will send a message saying "*name
 Dependencies:\
 NodeJS\
 DiscordJS\
-cheerio\
 dotenv\
 config\
-canvas\
-axios\
-webp-converter\
 googleapis\
 gtoken\
 node-fetch\
