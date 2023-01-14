@@ -64,7 +64,6 @@ function fridaybabyfuck() {
     main_channel.send("https://www.youtube.com/watch?v=WUyJ6N6FD9Q");
 }
 async function vxtwitter(twitter_link, message) {
-    //const twitter_client = new TwitterApi("AAAAAAAAAAAAAAAAAAAAAIidfgEAAAAA1fnBkTkHjqlG64AgjtEud8683ow%3DPC2ShBwKRVYBrBi5SxOWgBVfbBS4mb09gQr1Uj3XANpqX10EP6");
     const twitter_client = new TwitterApi(process.env.TWITTER_BEARER_TOKEN);
 
     let twitter_link_array = twitter_link.split('/');
