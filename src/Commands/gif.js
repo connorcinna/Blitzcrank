@@ -10,12 +10,11 @@ module.exports.run = async (bot, message, args) => {
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            if (data.results.id != 0) {
-                try {
+            try {
+                if (data.results.id != 0)    
                     message.channel.send(data.results[0].itemurl);
-                } catch (error) {
-                    message.channel.send({files: ["./Commands/no search results lol.png"]});
-                }
+            } catch (error) {
+                message.channel.send({files: ["./Commands/no search results lol.png"]});
             }
             console.log(data);
     });
