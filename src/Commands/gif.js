@@ -2,9 +2,6 @@ const discord = require("discord.js");
 const fetch = require("node-fetch");
 require('dotenv').config();
 const apikey = process.env.TENOR_KEY;
-const fs = require("fs");
-var log_file = fs.createWriteStream("./output.log", {flags : 'w'});
-var log_stdout = process.stdout;
 
 module.exports.run = async (bot, message, args) => {
     var limit = 1;
