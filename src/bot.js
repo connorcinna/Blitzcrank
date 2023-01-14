@@ -3,13 +3,10 @@ const util = require('util')
 const { TwitterApi } = require("twitter-api-v2");
 const fs = require("fs");
 const schedule = require('node-schedule');
-const dotenv = require('dotenv');
-dotenv.config();
-const config = require('config');
-
-const token = config.get("client_token");
-const prefix = config.get("prefix");
-const main_channel_id = config.get("main_channel_id");
+require('dotenv').config();
+const token = process.env.CLIENT_TOKEN;
+const prefix = process.env.PREFIX;
+const main_channel_id = process.env.MAIN_CHANNEL_ID;
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 console.log(token);
 
@@ -68,7 +65,7 @@ function fridaybabyfuck() {
 }
 async function vxtwitter(twitter_link, message) {
     //const twitter_client = new TwitterApi("AAAAAAAAAAAAAAAAAAAAAIidfgEAAAAA1fnBkTkHjqlG64AgjtEud8683ow%3DPC2ShBwKRVYBrBi5SxOWgBVfbBS4mb09gQr1Uj3XANpqX10EP6");
-    const twitter_client = new TwitterApi(config.get("twitter_bearer_token"));
+    const twitter_client = new TwitterApi(process.env.TWITTER_BEARER_TOKEN);
 
     let twitter_link_array = twitter_link.split('/');
     let tweet_id = twitter_link_array[twitter_link_array.length-1];

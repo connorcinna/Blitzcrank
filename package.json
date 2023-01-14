@@ -9,7 +9,6 @@
   "author": "Connor",
   "license": "ISC",
   "dependencies": {
-    "config": "^3.3.8",
     "discord.js": "^13.6.0",
     "dotenv": "^16.0.3",
     "googleapis": "^95.0.0",
