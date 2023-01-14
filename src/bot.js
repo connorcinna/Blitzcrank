@@ -7,20 +7,11 @@ const dotenv = require('dotenv');
 dotenv.config();
 const config = require('config');
 
-//var config;
-//if (!(process.env.client_token)) {
-//    console.log('in development');
-//    config = require('./config.json');
-//}
-//else {console.log('in production')}
-//const prefix = process.env.prefix || config.prefix;
-//const token = process.env.client_token || config.client_token;  //prefer the production token if possible
-//const main_channel_id = process.env.main_channel_id || config.main_channel_id;
 const token = config.get("client_token");
 const prefix = config.get("prefix");
 const main_channel_id = config.get("main_channel_id");
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
-
+console.log(token);
 
 var main_channel;
 
