@@ -8,7 +8,6 @@ const token = process.env.CLIENT_TOKEN;
 const prefix = process.env.PREFIX;
 const main_channel_id = process.env.MAIN_CHANNEL_ID;
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
-console.log(token);
 
 var main_channel;
 
