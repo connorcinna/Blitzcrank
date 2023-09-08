@@ -1,24 +1,25 @@
+import { Message } from "discord.js";
 const words = require("../words.json");
-const nouns = words.noun;
-const verbs = words.verb;
-const adjectives = words.adjective;
+const nouns: string[] = words.noun;
+const verbs: string[] = words.verb;
+const adjectives: string[] = words.adjective;
 function name_generator() {
 
-    var num_adjectives = Object.keys(words.adjective).length;
-    var num_nouns = Object.keys(words.noun).length;
-    var num_verbs = Object.keys(words.verb).length;
+    var num_adjectives: number = Object.keys(words.adjective).length;
+    var num_nouns: number = Object.keys(words.noun).length;
+    var num_verbs: number = Object.keys(words.verb).length;
 
-    var random_adjective = Math.floor(Math.random() * num_adjectives);
-    var random_noun = Math.floor(Math.random() * num_nouns);
-    var random_verb = Math.floor(Math.random() * num_verbs);
+    var random_adjective: number = Math.floor(Math.random() * num_adjectives);
+    var random_noun: number = Math.floor(Math.random() * num_nouns);
+    var random_verb: number = Math.floor(Math.random() * num_verbs);
 
-    var n_noun = nouns[random_noun];
-    var n_verb = verbs[random_verb];
-    var n_adjective = adjectives[random_adjective];
+    var n_noun: string = nouns[random_noun];
+    var n_verb: string = verbs[random_verb];
+    var n_adjective: string = adjectives[random_adjective];
 
-    var num_eos;
+    var num_eos: number = 0;
 
-    var random_num = Math.random();
+    var random_num: number = Math.random();
     var eos_chars = trailing_numbers(num_eos);
     //format: noun + verb + "er" + numbers until end of 16 characters
     console.log(n_noun);
@@ -42,7 +43,7 @@ function name_generator() {
 }
 
 //calculate number of characters left until 16
-function remaining_chars(input) {
+function remaining_chars(input: string) {
     if (input.length + 2 >= 16) {
         return (0);
     }
@@ -50,15 +51,15 @@ function remaining_chars(input) {
 }
 
 //returns a string of numbers as long as the remaining characters until 16
-function trailing_numbers(num_eos) {
-    var eos_chars = "";
+function trailing_numbers(num_eos: number) {
+    var eos_chars: string = "";
     for (let i = 0; i < num_eos; ++i) {
-        var random_num = Math.floor(Math.random() * 10);
+        var random_num: number = Math.floor(Math.random() * 10);
         eos_chars += random_num.toString();
     }    
     return eos_chars;
 }
-module.exports.run = async (bot, message, args) => {
+module.exports.run = async (message: Message) => {
     var ret = name_generator();
     message.channel.send(ret);
 }

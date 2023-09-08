@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "description": "lol",
   "scripts": {
-    "start": "node src/bot.js",
+    "start": "node src/bot.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Connor",
   "license": "ISC",
   "dependencies": {
+    "@types/request": "^2.48.8",
     "cheerio": "^1.0.0-rc.12",
     "discord.js": "^13.6.0",
     "dotenv": "^16.0.3",
@@ -22,6 +23,10 @@
     "request": "^2.88.2",
     "ts-node": "^10.9.1",
     "twitter-api-v2": "^1.12.3",
+    "typescript": "^4.9.5",
     "uws": "^200.0.0"
+  },
+  "devDependencies": {
+    "@types/node-schedule": "^2.1.0"
   }
 }

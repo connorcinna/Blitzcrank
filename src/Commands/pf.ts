@@ -1,11 +1,14 @@
+import { Message } from "discord.js"
 const cheerio = require("cheerio")
 const request = require("request")
 
 
-module.exports.run = async (bot, message, args) => {
-
+module.exports.run = async (message: Message, args: string[]) => {
+//	let Error = function(): void {
+//		console.log('Error running pf')
+//	}
 	var search_url = "https://2e.aonprd.com/Search.aspx?q=" + args
-	request(search_url, (error, response, html) => {
+	request(search_url, (error: Error, response: any, html: any) => {
 		if(!error && response.statusCode == 200) {
 			const $ = cheerio.load(html);
 			// var first_element = $('.row gap-small align-center nowrap').find('a').each(function(index, element) {

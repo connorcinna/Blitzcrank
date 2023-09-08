@@ -1,9 +1,10 @@
-const discord = require("discord.js");
-const fetch = require("node-fetch");
+//const discord = require("discord.js");
+//const fetch = require("node-fetch");
+import {Message} from 'discord.js'
 require('dotenv').config();
-const apikey = process.env.TENOR_KEY;
+const apikey: string = process.env.TENOR_KEY ?? "";
 
-module.exports.run = async (bot, message, args) => {
+module.exports.run = async (message: Message, args: string[]) => {
     var limit = 1;
     var search_term = args;
     var url = "https://g.tenor.com/v1/search?q=" + search_term + "&key=" + apikey + "&limit=" + limit;

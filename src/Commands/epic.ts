@@ -1,9 +1,7 @@
-const discord = require("discord.js");
-const fs = require('fs');
-const readline = require('readline');
-const google = require('googleapis');
-
-module.exports.run = async(bot, message, args) => {
+import { Message } from "discord.js";
+//const readline = require('readline');
+//const google = require('googleapis');
+module.exports.run = async(message: Message) => {
   return message.channel.send("currently disabled");
 }
 
